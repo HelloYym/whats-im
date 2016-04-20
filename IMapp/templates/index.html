@@ -16,11 +16,20 @@
     <link rel="stylesheet" href="/static/css/style.css"/>
 
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <script src="/static/js/csrf.js"></script>
 
     <script>
 
 
         $(document).ready(function () {
+
+            $.ajaxSetup({
+                        async: false,
+                        data: {
+                            csrfmiddlewaretoken: '{{ csrf_token }}'
+                        }
+                    }
+            )
 
             //注册和登陆页切换动画
             $('.message a').click(function () {
@@ -45,8 +54,8 @@
                 })
             })
 
+            $("#form_login").submit(function () {
 
-            $("#password_login").mouseleave(function () {
                 $.post("/check_passwd/", $("#form_login").serialize(), function (data, status) {
                     if (data == "no") {
                         $("#password_login").attr({
@@ -55,8 +64,16 @@
                         });
                         $('#password_login').focus();
                     }
+                    else {
+                        $.post("/login/", $("#form_login").serialize(), function (data, status) {
+                            $("html").html(data);
+                        })
+                    }
                 })
+                return false;
+
             })
+
 
             //注册用户名检查
             $('#username_register').blur(function () {
@@ -123,14 +140,6 @@
             $('#email_register').blur(function () {
                 var email = $(this).val();
 
-{#                if (email == '') {#}
-{#                    $(this).attr({#}
-{#                        "value": "",#}
-{#                        "placeholder": "email不能为空"#}
-{#                    });#}
-{#                    $('#email_register').focus();#}
-{#                }#}
-
                 var pattern = /^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z]+\.)+[a-zA-Z]{2,3}$/;
                 if (!pattern.test(email)) {
                     $(this).attr({
@@ -140,7 +149,27 @@
                     $('#email_register').focus();
                 }
             })
-        });
+
+            $("#form_register").submit(function () {
+
+                var email = $(this).val();
+                var pattern = /^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z]+\.)+[a-zA-Z]{2,3}$/;
+
+                if (!pattern.test(email)) {
+                    $(this).attr({
+                        "value": "",
+                        "placeholder": "email格式不正确"
+                    });
+                    $('#email_register').focus();
+                }
+                else {
+                    $.post("/register/", $("#form_register").serialize(), function (data, status) {
+                        $("html").html(data);
+                    })
+                }
+                return false;
+            })
+        })
 
     </script>
 
@@ -158,7 +187,7 @@
 </div>
 
 <div class="form">
-{#    <div class="thumbnail"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg"/></div>#}
+    {#    <div class="thumbnail"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg"/></div>#}
 
     <form class="register-form" method="post" action="/register/" id="form_register">
         {% csrf_token %}
@@ -166,17 +195,16 @@
         <input type="text" placeholder="username" name="username" id="username_register"/>
         <input type="password" placeholder="password" name="password" id="password_register"/>
         <input type="text" placeholder="email address" name="email" id="email_register"/>
-        <div id="div1"></div>
-        <button>create</button>
+        <input class="button" type="submit" value="creat" id="btn_register"/>
         <p class="message">Already registered? <a href="#">Sign In</a></p>
     </form>
 
-    <form class="login-form" method="post" action="/login/" id="form_login">
+    <form class="login-form" method="post" id="form_login">
         {% csrf_token %}
         {{ form }}
         <input type="text" placeholder="username" name="username" id="username_login"/>
         <input type="password" placeholder="password" name="password" id="password_login"/>
-        <button id="login_btn">login</button>
+        <input class="button" type="submit" value="login" id="btn_login"/>
         <p class="message">Not registered? <a href="#">Create an account</a></p>
     </form>
 

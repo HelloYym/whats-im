@@ -14444,14 +14444,14 @@ webpackJsonp([83], [function (e, t, n) {
         }, _deIndex: function (e, t, n) {
             var r;
             if (void 0 !== t) {
-                if (void 0 === this._indexes[t])throw new Error("Given attribute is not an index");
+                if (void 0 === this._indexes[t])throw new Error("Given attribute is not an IMapp");
                 return void delete this._indexes[t][n]
             }
             for (t in this._indexes)r = e.hasOwnProperty(t) ? e[t] : e.get && e.get(t), delete this._indexes[t][r]
         }, _index: function (e, t) {
             var n;
             if (void 0 !== t) {
-                if (void 0 === this._indexes[t])throw new Error("Given attribute is not an index");
+                if (void 0 === this._indexes[t])throw new Error("Given attribute is not an IMapp");
                 return n = e[t] || e.get && e.get(t), void(n && (this._indexes[t][n] = e))
             }
             for (t in this._indexes)n = e.hasOwnProperty(t) ? e[t] : e.get && e.get(t), null != n && (this._indexes[t][n] = e)
@@ -16763,7 +16763,7 @@ webpackJsonp([83], [function (e, t, n) {
         return e.substring(1, e.indexOf(" "))
     }
 
-    var o = n(12), a = n(473), i = n(24), s = n(201), u = n(2), l = /^(<[^ \/>]+)/, c = "data-danger-index", d = {
+    var o = n(12), a = n(473), i = n(24), s = n(201), u = n(2), l = /^(<[^ \/>]+)/, c = "data-danger-IMapp", d = {
         dangerouslyRenderMarkup: function (e) {
             o.canUseDOM ? void 0 : u(!1);
             for (var t, n = {}, d = 0; d < e.length; d++)e[d] ? void 0 : u(!1), t = r(e[d]), t = s(t) ? t : "*", n[t] = n[t] || [], n[t][d] = e[d];

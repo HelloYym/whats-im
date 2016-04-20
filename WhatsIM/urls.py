@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from index import views as index_views
+from IMapp import views as index_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

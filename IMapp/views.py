@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django.http import JsonResponse
 
 
 def index(request):
@@ -22,7 +23,7 @@ def login(request):
         auth.login(request, user)
         return render(request, "home.html")
     else:
-        return HttpResponseRedirect("/")
+        return HttpResponse('false')
 
 
 def register(request):
@@ -42,7 +43,6 @@ def register(request):
 def check_username(request):
     username = request.POST.get('username', None)
     user = User.objects.filter(username=request.POST['username'])
-    print username
     if user.count():
         return HttpResponse("yes")
     else:
@@ -52,13 +52,13 @@ def check_username(request):
 def check_passwd(request):
     username = request.POST.get('username', None)
     password = request.POST.get('password', None)
-    print username, password
-    user = auth.authenticate(username=username, password=password)
 
-    if user is not None:
+    user = User.objects.get(username=username)
+    if user.check_password(password):
         return HttpResponse("yes")
     else:
         return HttpResponse("no")
+
 
 
 def logout(request):

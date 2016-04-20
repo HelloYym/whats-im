@@ -42,7 +42,7 @@
   box-sizing: border-box;
   font-size: 14px;
 }
-.form button {
+.form .button {
   outline: 0;
   background: #EF3B3A;
   width: 100%;
