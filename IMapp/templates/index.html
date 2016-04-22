@@ -13,211 +13,157 @@
 
 
     <link rel="stylesheet" href="/static/css/reset.css"/>
-    <link rel="stylesheet" href="/static/css/style.css"/>
+    <link rel="stylesheet" href="/static/css/style_index.css"/>
+
+    {#    <link rel="stylesheet" href="/static/css/sprite_848a9a80e2b1964ed08f.css">#}
+    <link rel="stylesheet" id="style" href="/static/css/style_app.css">
 
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
     <script src="/static/js/csrf.js"></script>
-
-    <script>
-
-
-        $(document).ready(function () {
-
-            $.ajaxSetup({
-                        async: false,
-                        data: {
-                            csrfmiddlewaretoken: '{{ csrf_token }}'
-                        }
-                    }
-            )
-
-            //注册和登陆页切换动画
-            $('.message a').click(function () {
-                $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
-                $('#username_register').val("");
-                $('#password_register').val("");
-                $('#email_register').val("");
-            });
-
-            //用户名检查
-            $('#username_login').blur(function () {
-
-                $.post("/check_username/", $("#form_login").serialize(), function (data) {
-                    if (data == "no") {
-                        $("#username_login").attr({
-                            "value": "",
-                            "placeholder": "用户名不存在"
-
-                        });
-                        $('#username_login').focus();
-                    }
-                })
-            })
-
-            $("#form_login").submit(function () {
-
-                $.post("/check_passwd/", $("#form_login").serialize(), function (data, status) {
-                    if (data == "no") {
-                        $("#password_login").attr({
-                            "value": "",
-                            "placeholder": "密码错误"
-                        });
-                        $('#password_login').focus();
-                    }
-                    else {
-                        $.post("/login/", $("#form_login").serialize(), function (data, status) {
-                            $("html").html(data);
-                        })
-                    }
-                })
-                return false;
-
-            })
+    <script id="js" src="/static/js/index.js"></script>
+    <script src="/static/js/app.js"></script>
 
 
-            //注册用户名检查
-            $('#username_register').blur(function () {
-                var user = $(this).val();
+    <style>
 
-                if (user == "") {
-                    $(this).attr({
-                        "value": "",
-                        "placeholder": "用户名不能为空"
-                    });
-                    $('#username_register').focus();
-                }
-
-                if (user.length < 4 || user.length > 20) {
-                    $(this).attr({
-                        "value": "",
-                        "placeholder": "长度不符合要求，必须为4-20位"
-                    });
-                    $('#username_register').focus();
-                }
-
-                $.post("/check_username/", $("#form_register").serialize(), function (data) {
-                    if (data == "yes") {
-                        $("#username_register").attr({
-                            "value": "",
-                            "placeholder": "该用户名已存在"
-                        });
-                        $('#username_register').focus();
-                    }
-                })
-            })
-
-            //密码检查
-            $('#password_register').blur(function () {
-                var pwd = $(this).val();
-
-                if (pwd == "") {
-                    $(this).attr({
-                        "value": "",
-                        "placeholder": "密码不能为空"
-                    });
-                    $('#password_register').focus();
-                }
-
-                var pattern = /^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*$/;
-                if (!pattern.test(pwd)) {
-                    $(this).attr({
-                        "value": "",
-                        "placeholder": "只能由字母或数字组成"
-                    });
-                    $('#password_register').focus();
-                }
-
-                if (pwd.length < 4 || pwd.length > 12) {
-                    $(this).attr({
-                        "value": "",
-                        "placeholder": "长度不符合要求，必须为4-12位"
-                    });
-                    $('#password_register').focus();
-                }
-            })
-
-            //email检查
-            $('#email_register').blur(function () {
-                var email = $(this).val();
-
-                var pattern = /^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z]+\.)+[a-zA-Z]{2,3}$/;
-                if (!pattern.test(email)) {
-                    $(this).attr({
-                        "value": "",
-                        "placeholder": "email格式不正确"
-                    });
-                    $('#email_register').focus();
-                }
-            })
-
-            $("#form_register").submit(function () {
-
-                var email = $(this).val();
-                var pattern = /^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z]+\.)+[a-zA-Z]{2,3}$/;
-
-                if (!pattern.test(email)) {
-                    $(this).attr({
-                        "value": "",
-                        "placeholder": "email格式不正确"
-                    });
-                    $('#email_register').focus();
-                }
-                else {
-                    $.post("/register/", $("#form_register").serialize(), function (data, status) {
-                        $("html").html(data);
-                    })
-                }
-                return false;
-            })
-        })
-
-    </script>
+    </style>
 
 </head>
 
 <body>
 
-
-<div class="container">
-    <div class="info">
-        <h1>Whats IM</h1>
-        <span>Keep it Simple</span>
-        <!-- <span>Made by <a href="http://helloyym.me">Yym</a></span> -->
-    </div>
-</div>
-
-<div class="form">
-    {#    <div class="thumbnail"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg"/></div>#}
-
-    <form class="register-form" method="post" action="/register/" id="form_register">
-        {% csrf_token %}
-        {{ form }}
-        <input type="text" placeholder="username" name="username" id="username_register"/>
-        <input type="password" placeholder="password" name="password" id="password_register"/>
-        <input type="text" placeholder="email address" name="email" id="email_register"/>
-        <input class="button" type="submit" value="creat" id="btn_register"/>
-        <p class="message">Already registered? <a href="#">Sign In</a></p>
-    </form>
-
-    <form class="login-form" method="post" id="form_login">
-        {% csrf_token %}
-        {{ form }}
-        <input type="text" placeholder="username" name="username" id="username_login"/>
-        <input type="password" placeholder="password" name="password" id="password_login"/>
-        <input class="button" type="submit" value="login" id="btn_login"/>
-        <p class="message">Not registered? <a href="#">Create an account</a></p>
-    </form>
-
-</div>
-
-
-<footer class="footer">
+<div id="index">
     <div class="container">
         <div class="info">
-            <span><a href="http://helloyym.me">Made by Yym</a></span>
+            <h1>Whats IM</h1>
+            <span>Keep it Simple</span>
+            <!-- <span>Made by <a href="http://helloyym.me">Yym</a></span> -->
         </div>
     </div>
-</footer>
+
+
+    <div class="form">
+        {#        <div class="thumbnail"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg"/></div>#}
+
+        <form class="register-form" method="post" id="form_register">
+            {% csrf_token %}
+            {{ form }}
+            <input type="text" placeholder="username" name="username" id="username_register"/>
+            <input type="password" placeholder="password" name="password" id="password_register"/>
+            <input type="text" placeholder="email address" name="email" id="email_register"/>
+            <input class="button" type="submit" value="creat" id="btn_register"/>
+            <p class="message">Already registered? <a href="#">Sign In</a></p>
+        </form>
+
+        <form class="login-form" method="post" id="form_login">
+            {% csrf_token %}
+            {{ form }}
+            <input type="text" placeholder="username" name="username" id="username_login"/>
+            <input type="password" placeholder="password" name="password" id="password_login"/>
+            <input class="button" type="submit" value="login" id="btn_login"/>
+            <p class="message">Not registered? <a href="#">Create an account</a></p>
+        </form>
+
+    </div>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="info">
+                <span><a href="http://helloyym.me">Made by Yym</a></span>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+<div id="app">
+
+    <div class="app-wrapper app-wrapper-web app-wrapper-main" data-reactid=".0">
+        <div tabindex="-1" data-reactid=".0.0:$media-modal-manager"><span
+                data-reactid=".0.0:$media-modal-manager.1"></span></div>
+        <div tabindex="-1" data-reactid=".0.0:$main-modal-manager"><span
+                data-reactid=".0.0:$main-modal-manager.1"></span></div>
+        <span data-reactid=".0.0:$context-menu-manager"></span><span data-reactid=".0.0:$tooltip-manager"></span>
+        <div tabindex="-1" class="app two" data-reactid=".0.0:$main">
+            <noscript data-reactid=".0.0:$main.0"></noscript>
+            <noscript data-reactid=".0.0:$main.1"></noscript>
+            <span data-reactid=".0.0:$main.2"></span>
+            <div tabindex="-1" class="drawer-manager" data-reactid=".0.0:$main.3"><span class="pane pane-one"
+                                                                                        data-reactid=".0.0:$main.3.0"></span><span
+                    class="pane pane-two" data-reactid=".0.0:$main.3.1"></span><span class="pane pane-three"
+                                                                                     data-reactid=".0.0:$main.3.2"></span>
+            </div>
+            <div id="side" class="pane pane-list pane-one" data-reactid=".0.0:$main.4">
+                <header class="pane-header pane-list-header" data-reactid=".0.0:$main.4.$ChatHeader">
+                    <div class="pane-list-user" data-reactid=".0.0:$main.4.$ChatHeader.0">
+                        <div class="avatar icon-user-default" style="cursor:pointer;"
+                             data-reactid=".0.0:$main.4.$ChatHeader.0.0"><img src="/static/image/pp"
+                                                                              class="avatar-image is-loaded"
+                                                                              data-reactid=".0.0:$main.4.$ChatHeader.0.0.0">
+                        </div>
+                    </div>
+                    <div class="pane-list-controls" data-reactid=".0.0:$main.4.$ChatHeader.1">
+                        <div class="menu menu-horizontal" data-reactid=".0.0:$main.4.$ChatHeader.1.$chatlist-header">
+                            <span data-reactid=".0.0:$main.4.$ChatHeader.1.$chatlist-header.0"><div class="menu-item"
+                                                                                                    data-reactid=".0.0:$main.4.$ChatHeader.1.$chatlist-header.0.$=11">
+                                <button class="icon icon-chat" data-ignore-capture="any" title="新建对话" src="/static/image/icon-chat">
+                                    <img src="/static/image/icon-chat" />
+{#
+
+                                </button>
+
+                            </div><div class="menu-item"
+                                       data-reactid=".0.0:$main.4.$ChatHeader.1.$chatlist-header.0.$=12">
+                                <button class="icon icon-menu" data-ignore-capture="any" title="菜单"
+                                        data-reactid=".0.0:$main.4.$ChatHeader.1.$chatlist-header.0.$=12.0">菜单
+                                </button>
+                                <span data-reactid=".0.0:$main.4.$ChatHeader.1.$chatlist-header.0.$=12.1"></span></div></span>
+                        </div>
+                    </div>
+                </header>
+                <div class="butterbar-container" data-reactid=".0.0:$main.4.$ButterBar"><span
+                        data-reactid=".0.0:$main.4.$ButterBar.0"></span></div>
+                <div tabindex="-1" class="search-container" data-reactid=".0.0:$main.4.2">
+                    <div class="pane-subheader pane-list-subheader subheader-search" data-reactid=".0.0:$main.4.2.0">
+                        <button class="icon icon-search-morph" data-reactid=".0.0:$main.4.2.0.0">
+                            <div class="icon icon-back-blue" data-reactid=".0.0:$main.4.2.0.0.0"></div>
+                            <div class="icon icon-search" data-reactid=".0.0:$main.4.2.0.0.1"></div>
+                        </button>
+                        <span data-reactid=".0.0:$main.4.2.0.1"></span>
+                        <div class="input-placeholder" data-reactid=".0.0:$main.4.2.0.2">搜索或开始新的对话</div>
+                        <label for="input-chatlist-search" class="cont-input-search"
+                               data-reactid=".0.0:$main.4.2.0.3"><input type="text" class="input input-search"
+                                                                        data-tab="2" dir="auto" title="搜索或开始新的对话"
+                                                                        value=""
+                                                                        data-reactid=".0.0:$main.4.2.0.3.0"></label>
+                    </div>
+                </div>
+                <div class="pane-body pane-list-body" id="pane-side" data-list-scroll-container="true"
+                     data-reactid=".0.0:$main.4.3">
+                    <div class="empty" data-reactid=".0.0:$main.4.3.0">
+                        <div class="empty-text" data-reactid=".0.0:$main.4.3.0.2">无对话</div>
+                    </div>
+                </div>
+            </div>
+            <div class="pane pane-intro pane-two" data-reactid=".0.0:$main.5">
+                <div class="intro-body" data-reactid=".0.0:$main.5.0">
+                    <div class="intro-image" data-reactid=".0.0:$main.5.0.0"
+                         style="opacity: 1; transform: scale(1);"></div>
+                    <div class="intro-text-container" data-reactid=".0.0:$main.5.0.1"
+                         style="opacity: 1; transform: translateY(0px);"><h1 class="intro-title"
+                                                                             data-reactid=".0.0:$main.5.0.1.0">
+                        保持手机连线</h1>
+                        <div class="intro-text" data-reactid=".0.0:$main.5.0.1.1">WhatsApp 网页版连接至您的手机来同步信息，请将手机连接至 Wi-Fi
+                            以减少移动数据的使用量。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 </body>
 
