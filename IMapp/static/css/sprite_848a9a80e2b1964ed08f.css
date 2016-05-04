@@ -13006,8 +13006,10 @@
 }
 
 .icon-chat {
-    background-position: -689px -687px
+    /*background-position: -689px -687px*/
+    background-image: url("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQJbgNLswZXwJJOV5iEoLpegFMupAu8zwx216QQArii2OgOc-FV")
 }
+
 
 .icon-checkmark {
     background-position: -713px -711px

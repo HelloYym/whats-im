@@ -6,17 +6,19 @@
 
 $(document).ready(function () {
 
-$("#app").hide();
-    //$.get("/loggedin/", function (data) {
-    //    if (data["loggedin"] == "true") {
-    //        $("#index").hide();
-    //        $("#app").show();
-    //    }
-    //    else {
-    //        $("#index").show();
-    //        $("#app").hide();
-    //    }
-    //})
+//$("#app").hide();
+
+
+    $.get("/loggedin/", function (data) {
+        if (data["loggedin"] == "true") {
+            $("#index").hide();
+            $("#app").show();
+        }
+        else {
+            $("#index").show();
+            $("#app").hide();
+        }
+    })
 
 
     $.ajaxSetup({

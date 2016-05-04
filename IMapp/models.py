@@ -6,6 +6,14 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+# class User(models.Model):
+#     username = models.CharField(max_length=15)
+#     password = models.CharField(max_length=15)
+#     email = models.EmailField()
+#     login = models.BooleanField()
+#     def __unicode__(self):
+#         return self.username
+
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
