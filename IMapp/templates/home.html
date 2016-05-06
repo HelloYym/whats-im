@@ -10,50 +10,50 @@
     <!-- Bootstrap CSS -->
     <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
 
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <div class="container">
-      <div class="row clearfix">
+<div class="container">
+    <div class="row clearfix">
         <div class="col-md-12 column">
-          <ul class="breadcrumb">
-            <li>
-               <a href="#">Home</a>
-            </li>
-            <li>
-               <a href="#">Logout</a>
-            </li>
-            <li class="active">
-              {{user.username}}
-            </li>
-          </ul>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">Logout</a>
+                </li>
+                <li class="active">
+                    {{ user.username }}
+                </li>
+            </ul>
         </div>
-      </div>
-
-
-
-      <div class="row clearfix" height="100%">
-        <div class="col-md-4 column">
-          <div class="embed-responsive embed-responsive-4by3">
-            <iframe class="embed-responsive-item" src="http://localhost:8000/contact_list/" height="100%" width="50%" frameborder="no"></iframe>
-          </div>
-        </div>
-        <div class="col-md-8 column">
-          <div class="embed-responsive embed-responsive-4by3">
-              <iframe class="embed-responsive-item" src="http://localhost:8000/chat_box/" frameborder="no" ></iframe>
-          </div>
-        </div>
-        
-      </div>
     </div>
 
-    <!-- JavaScript 放置在文档最后面可以使页面加载速度更快 -->
-    <!-- 可选: 包含 jQuery 库 -->
-    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
-    <!-- 可选: 合并了 Bootstrap JavaScript 插件 -->
-    <script src="http://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  </body>
+
+    <div class="row clearfix" height="100%">
+        <div class="col-md-4 column">
+            <div class="embed-responsive embed-responsive-4by3">
+                <iframe class="embed-responsive-item" src="/contact_list/" height="100%" width="50%"
+                        frameborder="no"></iframe>
+            </div>
+        </div>
+        <div class="col-md-8 column">
+            <div class="embed-responsive embed-responsive-4by3">
+                <iframe class="embed-responsive-item" src="/chat_box/" frameborder="no"></iframe>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- JavaScript 放置在文档最后面可以使页面加载速度更快 -->
+<!-- 可选: 包含 jQuery 库 -->
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- 可选: 合并了 Bootstrap JavaScript 插件 -->
+<script src="http://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</body>
 
 </html>
 
