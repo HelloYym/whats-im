@@ -6,21 +6,6 @@
 
 $(document).ready(function () {
 
-//$("#app").hide();
-
-
-    $.get("/loggedin/", function (data) {
-        if (data["loggedin"] == "true") {
-            $("#index").hide();
-            $("#app").show();
-        }
-        else {
-            $("#index").show();
-            $("#app").hide();
-        }
-    })
-
-
     $.ajaxSetup({
             async: false,
             data: {
@@ -54,6 +39,7 @@ $(document).ready(function () {
 
     $("#form_login").submit(function () {
 
+        var check = true;
         $.post("/check_passwd/", $("#form_login").serialize(), function (data, status) {
             if (data["pass"] == "false") {
                 $("#password_login").attr({
@@ -61,20 +47,11 @@ $(document).ready(function () {
                     "placeholder": "密码错误"
                 });
                 $('#password_login').focus();
-            }
-            else {
-                $.post("/login/", $("#form_login").serialize(), function (data, status) {
-                    if (data["login"] == "true") {
-                        $("#index").hide();
-                        $("#app").show();
-                        //$.get("/logout/", function (data, status) {
-                        //})
-                    }
-                })
+                check = false;
             }
         })
-        return false;
 
+        return check;
     })
 
 
@@ -152,14 +129,6 @@ $(document).ready(function () {
         }
     })
 
-    $("#form_register").submit(function () {
-        $.post("/register/", $("#form_register").serialize(), function (data, status) {
-            if (data["register"] == "true") {
-                $("#index").hide();
-                $("#app").show();
-            }
-        })
-        return false;
-    })
+
 })
 

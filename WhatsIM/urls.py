@@ -19,9 +19,9 @@ from IMapp import views as index_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', index_views.index),
+    url(r'^$', index_views.home),
+    url(r'^index/', index_views.index),
     url(r'^login/', index_views.login),
-    url(r'^loggedin/', index_views.loggedin),
     url(r'^register/', index_views.register),
     url(r'^logout/', index_views.logout),
     url(r'^check_username/', index_views.check_username),

@@ -11,23 +11,26 @@ def index(request):
     return render(request, "index.html")
 
 
+def home(request):
+    if request.user.is_authenticated():
+        print "username:"
+        print request.user.username
+        return render(request, "home.html")
+    else:
+        return HttpResponseRedirect("/index/")
+
+
 def login(request):
     username = request.POST.get('username', None)
     password = request.POST.get('password', None)
+
     user = auth.authenticate(username=username, password=password)
 
     if user is not None:
         auth.login(request, user)
-        return JsonResponse({'login': 'true'})
+        return HttpResponseRedirect("/")
     else:
-        return JsonResponse({'login': 'false'})
-
-
-def loggedin(request):
-    if request.user.is_authenticated():
-        return JsonResponse({'loggedin': 'true'})
-    else:
-        return JsonResponse({'loggedin': 'false'})
+        return HttpResponseRedirect("/index/")
 
 
 def register(request):
@@ -37,11 +40,13 @@ def register(request):
     user = User.objects.filter(username=request.POST['username'])
 
     if user.count():
-        return JsonResponse({'register': 'false'})
+        return HttpResponseRedirect("/index/")
     else:
         user = User.objects.create_user(username=username, password=password, email=email)
         user.save()
-        return JsonResponse({'register': 'true'})
+        user = auth.authenticate(username=username, password=password)
+        auth.login(request, user)
+        return HttpResponseRedirect("/")
 
 
 def check_username(request):
@@ -66,7 +71,7 @@ def check_passwd(request):
 
 def logout(request):
     auth.logout(request)
-    return JsonResponse({'logout': 'true'})
+    return HttpResponseRedirect('/')
 
 # def upload_icon(request):
 #     un = request.POST.get('username')

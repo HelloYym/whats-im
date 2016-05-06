@@ -146,14 +146,14 @@ body:before {
 }
 
 
-#side > header > div.pane-list-controls > div > span > div:nth-child(1) > button {
-  background-image: url("/static/image/icon-chat.png");
-}
+/*#side > header > div.pane-list-controls > div > span > div:nth-child(1) > button {*/
+  /*background-image: url("/static/image/icon-chat.png");*/
+/*}*/
 
-#side > header > div.pane-list-controls > div > span > div:nth-child(2) > button {
-  background-image: url("/static/image/icon-menu.png");
-}
+/*#side > header > div.pane-list-controls > div > span > div:nth-child(2) > button {*/
+  /*background-image: url("/static/image/icon-menu.png");*/
+/*}*/
 
-#side > div.search-container > div > button > div.icon.icon-search {
-  background-image: url("/static/image/icon-search.png");
-}
+/*#side > div.search-container > div > button > div.icon.icon-search {*/
+  /*background-image: url("/static/image/icon-search.png");*/
+/*}*/
