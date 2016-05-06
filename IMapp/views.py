@@ -73,6 +73,12 @@ def logout(request):
     auth.logout(request)
     return HttpResponseRedirect('/')
 
+def chat_box(request):
+    return render(request, "chat_box.html")
+
+def contact_list(request):
+    return render(request, "contact_list.html")
+
 # def upload_icon(request):
 #     un = request.POST.get('username')
 #     f = request.FILES.get('uploadfile')
