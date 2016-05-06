@@ -297,14 +297,6 @@
 <script type="text/javascript">
     (function () {
 
-        $.ajaxSetup({
-                    async: false,
-                    data: {
-                        csrfmiddlewaretoken: '{{ csrf_token }}'
-                    },
-                }
-        )
-
         var Message;
         Message = function (arg) {
             this.text = arg.text, this.message_side = arg.message_side;

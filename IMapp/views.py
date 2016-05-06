@@ -6,6 +6,9 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.http import JsonResponse
 
+message_list = []
+flag = {}
+
 
 def index(request):
     return render(request, "index.html")
@@ -15,6 +18,8 @@ def home(request):
     if request.user.is_authenticated():
         print "username:"
         print request.user.username
+        # 消息队列
+        flag[request.user.username] = 0
         return render(request, "chat_box.html")
     else:
         return HttpResponseRedirect("/index/")
@@ -98,21 +103,32 @@ def contact_list(request):
 #     return render_to_response('upload.html', {})
 
 
-message_list = []
-
-
 def pushMessage(request):
     text = request.POST.get('message', None)
-    message = {'username': request.user.username, 'message': text, 'state': "False"}
+    message = {'username': request.user.username, 'message': text, 'state': "True"}
     message_list.append(message)
     print message_list
     return JsonResponse({'push': 'true'})
 
 
 def pullMessage(request):
-    for message in message_list:
-        if (message['username'] != request.user.username and message['state'] == "False"):
-            message['state'] = "True"
-            message_list.remove(message)
+    # for message in message_list:
+    #     if (message['username'] != request.user.username and message['state'] == "False"):
+    #         message['state'] = "True"
+    #         message_list.remove(message)
+    #         return JsonResponse(message)
+    # return JsonResponse({'state': "False"})
+
+    print len(message_list)
+    print request.user.username
+    print flag[request.user.username]
+
+    for i in range(flag[request.user.username], len(message_list)):
+        message = message_list[i]
+        if (message['username'] != request.user.username):
+            # message['state'] = "True"
+            flag[request.user.username] = i + 1
             return JsonResponse(message)
+        else:
+            flag[request.user.username] = i + 1
     return JsonResponse({'state': "False"})
