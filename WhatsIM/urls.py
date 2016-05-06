@@ -28,4 +28,7 @@ urlpatterns = [
     url(r'^check_passwd/', index_views.check_passwd),
     url(r'^contact_list/', index_views.contact_list),
     url(r'^chat_box/', index_views.chat_box),
+
+    url(r'^pushMessage/', index_views.pushMessage),
+    url(r'^pullMessage/', index_views.pullMessage),
 ]

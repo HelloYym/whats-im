@@ -36,4 +36,6 @@ class Message(models.Model):
     contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
     message = models.TextField()
     date = models.DateTimeField(null=True)
-    direction = models.BooleanField()
+    # direction = models.BooleanField()
+    # state = models.BooleanField(default=False)
+

@@ -15,7 +15,7 @@ def home(request):
     if request.user.is_authenticated():
         print "username:"
         print request.user.username
-        return render(request, "home.html")
+        return render(request, "chat_box.html")
     else:
         return HttpResponseRedirect("/index/")
 
@@ -73,11 +73,14 @@ def logout(request):
     auth.logout(request)
     return HttpResponseRedirect('/')
 
+
 def chat_box(request):
     return render(request, "chat_box.html")
 
+
 def contact_list(request):
     return render(request, "contact_list.html")
+
 
 # def upload_icon(request):
 #     un = request.POST.get('username')
@@ -93,3 +96,23 @@ def contact_list(request):
 #     return HttpResponse(filename + ' OK')
 #
 #     return render_to_response('upload.html', {})
+
+
+message_list = []
+
+
+def pushMessage(request):
+    text = request.POST.get('message', None)
+    message = {'username': request.user.username, 'message': text, 'state': "False"}
+    message_list.append(message)
+    print message_list
+    return JsonResponse({'push': 'true'})
+
+
+def pullMessage(request):
+    for message in message_list:
+        if (message['username'] != request.user.username and message['state'] == "False"):
+            message['state'] = "True"
+            message_list.remove(message)
+            return JsonResponse(message)
+    return JsonResponse({'state': "False"})

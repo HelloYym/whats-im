@@ -239,6 +239,8 @@
 
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
     <script src="http://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <script src="/static/js/csrf.js"></script>
 </head>
 <body>
 <div class="chat_window">
@@ -248,7 +250,7 @@
             <div class="button minimize"></div>
             <div class="button maximize"></div>
         </div>
-        <div class="title">Chat</div>
+        <div class="title">{{ user.username }}</div>
     </div>
     <ul class="messages">
         <li class="message left appeared">
@@ -272,7 +274,7 @@
         <li class="message right appeared">
             <div class="avatar"></div>
             <div class="text_wrapper">
-                <div class="text">dfsf</div>
+                <div class="text">你好,我叫杨煜溟</div>
             </div>
         </li>
     </ul>
@@ -294,6 +296,15 @@
 </div>
 <script type="text/javascript">
     (function () {
+
+        $.ajaxSetup({
+                    async: false,
+                    data: {
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    },
+                }
+        )
+
         var Message;
         Message = function (arg) {
             this.text = arg.text, this.message_side = arg.message_side;
@@ -311,28 +322,45 @@
             return this;
         };
         $(function () {
-            var getMessageText, message_side, sendMessage;
+            var getMessageText, message_side, sendMessage, receiveMessage, showMessage;
             message_side = 'right';
             getMessageText = function () {
                 var $message_input;
                 $message_input = $('.message_input');
                 return $message_input.val();
             };
-            sendMessage = function (text) {
+            showMessage = function (text, message_side) {
                 var $messages, message;
-                if (text.trim() === '') {
-                    return;
-                }
-                $('.message_input').val('');
                 $messages = $('.messages');
-                message_side = message_side === 'left' ? 'right' : 'left';
                 message = new Message({
                     text: text,
                     message_side: message_side
                 });
                 message.draw();
                 return $messages.animate({scrollTop: $messages.prop('scrollHeight')}, 300);
+            }
+
+
+            sendMessage = function (text) {
+                if (text.trim() === '') {
+                    return;
+                }
+                $('.message_input').val('');    //清空消息框
+
+                $.post("/pushMessage/", {"message": text})
+                return showMessage(text, 'right');
             };
+
+
+            receiveMessage = function () {
+                $.post("/pullMessage/", {} ,function (data) {
+                    if (data['state'] == "True") {
+                        showMessage(data['message'], 'left');
+                    }
+                })
+            };
+
+
             $('.send_message').click(function (e) {
                 return sendMessage(getMessageText());
             });
@@ -341,13 +369,12 @@
                     return sendMessage(getMessageText());
                 }
             });
-            sendMessage('Hello Philip! :)');
-            setTimeout(function () {
-                return sendMessage('Hi Sandy! How are you?');
-            }, 1000);
-            return setTimeout(function () {
-                return sendMessage('I\'m fine, thank you!');
-            }, 2000);
+
+            // 定时请求服务器，更新新消息
+            setInterval(function () {
+                        receiveMessage();
+                    },
+                    1000);
         });
     }.call(this));
 </script>
