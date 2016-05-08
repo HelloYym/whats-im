@@ -20,7 +20,7 @@ def home(request):
         print request.user.username
         # 消息队列
         flag[request.user.username] = 0
-        return render(request, "chat_box.html")
+        return render(request, "home.html")
     else:
         return HttpResponseRedirect("/index/")
 

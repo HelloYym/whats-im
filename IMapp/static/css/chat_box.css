@@ -1,39 +1,27 @@
-<!DOCTYPE html>
-<!-- saved from url=(0054)http://bootsnipp-env.elasticbeanstalk.com/iframe/ZlkBn -->
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <meta name="robots" content="noindex">
-
-    <title>Chat Box</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
-
-    <style type="text/css">
-        * {
+* {
             box-sizing: border-box;
         }
 
         body {
-            background-color: #edeff2;
+            /*background-color: #edeff2;*/
             font-family: "Calibri", "Roboto", sans-serif;
         }
 
         .chat_window {
-            position: absolute;
+            /*position: absolute;
             width: calc(100% - 20px);
-            max-width: 800px;
-            height: 500px;
-            border-radius: 10px;
+            max-width: 800px;*/
+            width: 100%;
+            height: 540px;
+            border-radius: 8px;
             background-color: #fff;
             left: 50%;
             top: 50%;
-            transform: translateX(-50%) translateY(-50%);
+            transform: translateX(0%) translateY(0%);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
             background-color: #f8f8f8;
             overflow: hidden;
+            margin-top: 1px;
         }
 
         .top_menu {
@@ -70,6 +58,7 @@
         }
 
         .top_menu .title {
+            width: 100%;
             text-align: center;
             color: #bcbdc0;
             font-size: 20px;
@@ -179,6 +168,7 @@
         .bottom_wrapper {
             position: relative;
             width: 100%;
+            border-radius: 5px;
             background-color: #fff;
             padding: 20px 20px;
             position: absolute;
@@ -234,143 +224,3 @@
         .message_template {
             display: none;
         }
-
-    </style>
-
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
-    <script src="http://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-    <script src="/static/js/csrf.js"></script>
-</head>
-<body>
-<div class="chat_window">
-    <div class="top_menu">
-        <div class="buttons">
-            <div class="button close"></div>
-            <div class="button minimize"></div>
-            <div class="button maximize"></div>
-        </div>
-        <div class="title">{{ user.username }}</div>
-    </div>
-    <ul class="messages">
-        <li class="message left appeared">
-            <div class="avatar"></div>
-            <div class="text_wrapper">
-                <div class="text">Hello Philip! :)</div>
-            </div>
-        </li>
-        <li class="message right appeared">
-            <div class="avatar"></div>
-            <div class="text_wrapper">
-                <div class="text">Hi Sandy! How are you?</div>
-            </div>
-        </li>
-        <li class="message left appeared">
-            <div class="avatar"></div>
-            <div class="text_wrapper">
-                <div class="text">I'm fine, thank you!</div>
-            </div>
-        </li>
-        <li class="message right appeared">
-            <div class="avatar"></div>
-            <div class="text_wrapper">
-                <div class="text">你好,我叫杨煜溟</div>
-            </div>
-        </li>
-    </ul>
-    <div class="bottom_wrapper clearfix">
-        <div class="message_input_wrapper"><input class="message_input" placeholder="Type your message here..."></div>
-        <div class="send_message">
-            <div class="icon"></div>
-            <div class="text">Send</div>
-        </div>
-    </div>
-</div>
-<div class="message_template">
-    <li class="message">
-        <div class="avatar"></div>
-        <div class="text_wrapper">
-            <div class="text"></div>
-        </div>
-    </li>
-</div>
-<script type="text/javascript">
-    (function () {
-
-        var Message;
-        Message = function (arg) {
-            this.text = arg.text, this.message_side = arg.message_side;
-            this.draw = function (_this) {
-                return function () {
-                    var $message;
-                    $message = $($('.message_template').clone().html());
-                    $message.addClass(_this.message_side).find('.text').html(_this.text);
-                    $('.messages').append($message);
-                    return setTimeout(function () {
-                        return $message.addClass('appeared');
-                    }, 0);
-                };
-            }(this);
-            return this;
-        };
-        $(function () {
-            var getMessageText, message_side, sendMessage, receiveMessage, showMessage;
-            message_side = 'right';
-            getMessageText = function () {
-                var $message_input;
-                $message_input = $('.message_input');
-                return $message_input.val();
-            };
-            showMessage = function (text, message_side) {
-                var $messages, message;
-                $messages = $('.messages');
-                message = new Message({
-                    text: text,
-                    message_side: message_side
-                });
-                message.draw();
-                return $messages.animate({scrollTop: $messages.prop('scrollHeight')}, 300);
-            }
-
-
-            sendMessage = function (text) {
-                if (text.trim() === '') {
-                    return;
-                }
-                $('.message_input').val('');    //清空消息框
-
-                $.post("/pushMessage/", {"message": text})
-                return showMessage(text, 'right');
-            };
-
-
-            receiveMessage = function () {
-                $.post("/pullMessage/", {} ,function (data) {
-                    if (data['state'] == "True") {
-                        showMessage(data['message'], 'left');
-                    }
-                })
-            };
-
-
-            $('.send_message').click(function (e) {
-                return sendMessage(getMessageText());
-            });
-            $('.message_input').keyup(function (e) {
-                if (e.which === 13) {
-                    return sendMessage(getMessageText());
-                }
-            });
-
-            // 定时请求服务器，更新新消息
-            setInterval(function () {
-                        receiveMessage();
-                    },
-                    1000);
-        });
-    }.call(this));
-</script>
-
-
-</body>
-</html>
