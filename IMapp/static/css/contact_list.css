@@ -18,7 +18,7 @@
 }
 
 body {
-    background-color: #edeff2;
+    /*background-color: #edeff2;*/
     font-family: "Calibri", "Roboto", sans-serif;
 }
 
@@ -28,7 +28,6 @@ body {
     left: 50%;
     top: 50%;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    background-color: #f8f8f8;
     /*overflow: hidden;*/
 }
 
@@ -67,6 +66,7 @@ body {
     font-weight: bold;
     padding: 5px 15px;
     margin-top: 2px;
+    color: #2b7e9b;
 }
 
 ul.c-controls {
@@ -101,6 +101,7 @@ ul.c-controls li a:hover {
 .name {
     font-size: 1.4em;
     font-weight: 500;
+    color: #45829b;
 }
 
 .c-info {
