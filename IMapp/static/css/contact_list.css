@@ -1,5 +1,4 @@
 @import url(//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css);
-@import url(////fonts.googleapis.com/icon?family=Material+Icons);
 
 .panel > .list-group .list-group-item:first-child {
     border-top: 1px solid rgb(204, 204, 204);
@@ -102,6 +101,7 @@ ul.c-controls li a:hover {
     font-size: 1.4em;
     font-weight: 500;
     color: #45829b;
+    cursor: pointer;
 }
 
 .c-info {
@@ -115,3 +115,8 @@ ul.c-controls li a:hover {
     overflow: scroll;
     border-radius: 5px;
 }
+
+
+.contact_template {
+            display: none;
+        }

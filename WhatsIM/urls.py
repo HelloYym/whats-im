@@ -15,20 +15,25 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from IMapp import views as index_views
+from IMapp import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', index_views.home),
-    url(r'^index/', index_views.index),
-    url(r'^login/', index_views.login),
-    url(r'^register/', index_views.register),
-    url(r'^logout/', index_views.logout),
-    url(r'^check_username/', index_views.check_username),
-    url(r'^check_passwd/', index_views.check_passwd),
-    url(r'^contact_list/', index_views.contact_list),
-    url(r'^chat_box/', index_views.chat_box),
+    url(r'^$', views.home),
+    url(r'^index/', views.index),
+    url(r'^login/', views.login),
+    url(r'^register/', views.register),
+    url(r'^logout/', views.logout),
+    url(r'^check_username/', views.check_username),
+    url(r'^check_passwd/', views.check_passwd),
+    url(r'^contact_list/', views.contact_box),
+    url(r'^chat_box/', views.chat_box),
 
-    url(r'^pushMessage/', index_views.pushMessage),
-    url(r'^pullMessage/', index_views.pullMessage),
+    url(r'^pushMessage/', views.push_message),
+    url(r'^pullMessage/', views.pull_message),
+    url(r'^addContact/', views.add_contact),
+    url(r'^getContactList/', views.get_contact_list),
+
+    url(r'^chat_with_contact/', views.chat_with_contact),
+    url(r'^get_chat_with/', views.get_chat_with),
 ]

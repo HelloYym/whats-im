@@ -5,9 +5,9 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.http import JsonResponse
+from IMapp.models import Contact, UserProfile, Message
 
-message_list = []
-flag = {}
+chat_with = {}
 
 
 def index(request):
@@ -19,7 +19,7 @@ def home(request):
         print "username:"
         print request.user.username
         # 消息队列
-        flag[request.user.username] = 0
+        chat_with[request.user.username] = None
         return render(request, "home.html")
     else:
         return HttpResponseRedirect("/index/")
@@ -83,7 +83,7 @@ def chat_box(request):
     return render(request, "chat_box.html")
 
 
-def contact_list(request):
+def contact_box(request):
     return render(request, "contact_list.html")
 
 
@@ -103,32 +103,94 @@ def contact_list(request):
 #     return render_to_response('upload.html', {})
 
 
-def pushMessage(request):
-    text = request.POST.get('message', None)
-    message = {'username': request.user.username, 'message': text, 'state': "True"}
-    message_list.append(message)
-    print message_list
-    return JsonResponse({'push': 'true'})
+def add_message(sender, receiver, text):
+
+    # sender 存储消息
+    user = User.objects.get(username=sender)
+    contact = user.contact_set.get(contact=receiver)
+    m = Message.objects.create(contact=contact, message=text, receive=False, state=True)
+    m.save()
+
+    # receiver 存储消息
+    user = User.objects.get(username=receiver)
+    contact = user.contact_set.get(contact=sender)
+    m = Message.objects.create(contact=contact, message=text, receive=True, state=False)
+    m.save()
 
 
-def pullMessage(request):
-    # for message in message_list:
-    #     if (message['username'] != request.user.username and message['state'] == "False"):
-    #         message['state'] = "True"
-    #         message_list.remove(message)
-    #         return JsonResponse(message)
-    # return JsonResponse({'state': "False"})
+def push_message(request):
+    try:
+        contact = request.user.contact_set.get(contact=chat_with[request.user.username])
+    except Contact.DoesNotExist:
+        print "no chat with"
+        return JsonResponse({'push': "False"})
+    else:
+        text = request.POST.get('message', None)
+        add_message(request.user.username, chat_with[request.user.username], text)
+        return JsonResponse({'push': 'True'})
 
-    print len(message_list)
-    print request.user.username
-    print flag[request.user.username]
 
-    for i in range(flag[request.user.username], len(message_list)):
-        message = message_list[i]
-        if (message['username'] != request.user.username):
-            # message['state'] = "True"
-            flag[request.user.username] = i + 1
-            return JsonResponse(message)
+def pull_message(request):
+    try:
+        contact = request.user.contact_set.get(contact=chat_with[request.user.username])
+    except Contact.DoesNotExist:
+        print "no chat with"
+        return JsonResponse({'pull': "False"})
+    else:
+        msg = contact.message_set.filter(state=False, receive=True).order_by(id)[0]
+        if msg is None:
+            return JsonResponse({'pull': "False"})
         else:
-            flag[request.user.username] = i + 1
-    return JsonResponse({'state': "False"})
+            msg.state = True
+            msg.save()
+            return JsonResponse({'pull': "True", 'message': msg.message})
+
+
+def add_contact(request):
+    contact = request.POST.get('contact', None)
+
+    try:
+        contact_user = User.objects.get(username=contact)
+    except User.DoesNotExist:
+        return JsonResponse({"state": "n", "msg": "user don't exist."})
+
+    contact_set = request.user.contact_set
+
+    try:
+        contact_set.get(contact=contact)
+    except Contact.DoesNotExist:
+        c1 = Contact.objects.create(contact=contact, user=request.user)
+        c1.save()
+        # 双向添加联系人,之后可以加入验证功能
+        c2 = Contact.objects.create(contact=request.user.username, user=contact_user)
+        c2.save();
+
+        return JsonResponse({"state": "n", "msg": "add contact success."})
+    else:
+        return JsonResponse({"state": "n", "msg": "contact has already exist."})
+
+
+def get_contact_list(request):
+    contact_set = request.user.contact_set
+    contact_list = {}
+    for contact in contact_set.all():
+        try:
+            contact_user = User.objects.get(username=contact)
+        except User.DoesNotExist:
+            print "contact error"
+        else:
+            email = contact_user.email
+            password = contact_user.password
+            # 返回用户和用户的信息
+            contact_list[contact_user.username] = {'email': email}
+    return JsonResponse(contact_list)
+
+
+def chat_with_contact(request):
+    contact = request.POST.get('contact', None)
+    chat_with[request.user.username] = contact
+    return JsonResponse({'chat_with': contact})
+
+
+def get_chat_with(request):
+    return JsonResponse({'chat_with': chat_with[request.user.username]})

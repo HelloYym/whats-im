@@ -27,15 +27,16 @@ class UserProfile(models.Model):
 class Contact(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     contact = models.CharField(max_length=20)
+    # contact = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __unicode__(self):
-        return self.user
+        return self.contact
 
 
 class Message(models.Model):
     contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
     message = models.TextField()
     date = models.DateTimeField(null=True)
-    # direction = models.BooleanField()
-    # state = models.BooleanField(default=False)
+    receive = models.BooleanField(default=False)
+    state = models.BooleanField(default=False)
 
