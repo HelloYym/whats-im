@@ -137,8 +137,9 @@ def pull_message(request):
         print "no chat with"
         return JsonResponse({'pull': "False"})
     else:
-        msg = contact.message_set.filter(state=False, receive=True).order_by(id)[0]
-        if msg is None:
+        try:
+            msg = contact.message_set.get(state=False, receive=True)
+        except Message.DoesNotExist:
             return JsonResponse({'pull': "False"})
         else:
             msg.state = True

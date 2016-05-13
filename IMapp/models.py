@@ -40,3 +40,6 @@ class Message(models.Model):
     receive = models.BooleanField(default=False)
     state = models.BooleanField(default=False)
 
+    def __unicode__(self):
+        return self.message
+
