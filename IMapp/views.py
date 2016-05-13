@@ -16,8 +16,8 @@ def index(request):
 
 def home(request):
     if request.user.is_authenticated():
-        print "username:"
-        print request.user.username
+        # print "username:"
+        # print request.user.username
         # 消息队列
         chat_with[request.user.username] = None
         return render(request, "home.html")
