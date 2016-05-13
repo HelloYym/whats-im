@@ -46,6 +46,7 @@ $(function () {
 
     var refresh_contact_list = function () {
         $('.contacts').html("");
+
         $.post("/getContactList/", function (data) {
             for (contact in data)
                 addContact(contact, data[contact]);
@@ -88,14 +89,15 @@ $(function () {
         $.post("/addContact/", {contact: $('#contact_name').val()}, function (data) {
             $('#contact_msg').html(data["msg"])
         })
-        $('.contacts').html("");
 
-        setTimeout(refresh_contact_list, 300);
+        setTimeout(refresh_contact_list, 100);
     })
 
     $(document).ready(function () {
         refresh_contact_list();
     })
+
+    $('.refresh_contact_list').click(refresh_contact_list);
 
 
     $('.contacts').on("click", ".name", function () {

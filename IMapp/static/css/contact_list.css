@@ -102,6 +102,7 @@ ul.c-controls li a:hover {
     font-weight: 500;
     color: #45829b;
     cursor: pointer;
+    margin-left: 10px;
 }
 
 .c-info {
@@ -116,7 +117,6 @@ ul.c-controls li a:hover {
     border-radius: 5px;
 }
 
-
 .contact_template {
-            display: none;
-        }
+    display: none;
+}

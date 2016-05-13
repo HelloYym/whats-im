@@ -67,10 +67,10 @@ $(document).ready(function () {
             $('#username_register').focus();
         }
 
-        if (user.length < 4 || user.length > 20) {
+        if (user.length < 3 || user.length > 20) {
             $(this).attr({
                 "value": "",
-                "placeholder": "长度不符合要求，必须为4-20位"
+                "placeholder": "长度不符合要求，必须为3-20位"
             });
             $('#username_register').focus();
         }

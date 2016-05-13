@@ -50,6 +50,8 @@
                         <li><a href="#" class="hide-search" data-command="toggle-search" data-toggle="tooltip"
                                data-placement="top" title="Toggle Search"><i
                                 class="glyphicon glyphicon-search"></i></a></li>
+                        <li><a class="refresh_contact_list" title="Refresh" data-toggle="tooltip"><i
+                                class="glyphicon glyphicon-repeat"></i></a></li>
                     </ul>
                 </div>
 
@@ -66,154 +68,154 @@
                 </div>
 
                 <ul class="list-group contacts" id="contact-list">
-{#                    <li class="list-group-item">#}
-{#                        <div class="col-xs-12 col-sm-3">#}
-{#                            <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Scott Stevens"#}
-{#                                 class="img-responsive img-circle"/>#}
-{#                        </div>#}
-{##}
-{#                        <div class="col-xs-12 col-sm-9">#}
-{#                            <span class="name">Yourself</span><br/>#}
-{#                                    <span class="glyphicon glyphicon-map-marker text-muted c-info" data-toggle="tooltip"#}
-{#                                          title="5842 Hillcrest Rd"></span>#}
-{#                                    <span class="visible-xs"> <span#}
-{#                                            class="text-muted">5842 Hillcrest Rd</span><br/></span>#}
-{#                                    <span class="glyphicon glyphicon-earphone text-muted c-info" data-toggle="tooltip"#}
-{#                                          title="(870) 288-4149"></span>#}
-{#                            <span class="visible-xs"> <span class="text-muted">(870) 288-4149</span><br/></span>#}
-{#                                    <span class="glyphicon glyphicon-envelope text-muted c-info" data-toggle="tooltip"#}
-{#                                          title="scott.stevens@example.com"></span>#}
-{#                                    <span class="visible-xs"> <span#}
-{#                                            class="text-muted">scott.stevens@example.com</span><br/></span>#}
-{#                        </div>#}
-{#                        <div class="clearfix"></div>#}
-{#                    </li>#}
-{#                    <li class="list-group-item">#}
-{#                        <div class="col-xs-12 col-sm-3">#}
-{#                            <img src="http://api.randomuser.me/portraits/men/97.jpg" alt="Seth Frazier"#}
-{#                                 class="img-responsive img-circle"/>#}
-{#                        </div>#}
-{#                        <div class="col-xs-12 col-sm-9">#}
-{#                            <span class="name">Seth Frazier</span><br/>#}
-{#                                        <span class="glyphicon glyphicon-map-marker text-muted c-info"#}
-{#                                              data-toggle="tooltip"#}
-{#                                              title="7396 E North St"></span>#}
-{#                                    <span class="visible-xs"> <span#}
-{#                                            class="text-muted">7396 E North St</span><br/></span>#}
-{#                                        <span class="glyphicon glyphicon-earphone text-muted c-info"#}
-{#                                              data-toggle="tooltip"#}
-{#                                              title="(560) 180-4143"></span>#}
-{#                            <span class="visible-xs"> <span class="text-muted">(560) 180-4143</span><br/></span>#}
-{#                                        <span class="glyphicon glyphicon-envelope text-muted c-info"#}
-{#                                              data-toggle="tooltip"#}
-{#                                              title="seth.frazier@example.com"></span>#}
-{#                                        <span class="visible-xs"> <span#}
-{#                                                class="text-muted">seth.frazier@example.com</span><br/></span>#}
-{#                        </div>#}
-{#                        <div class="clearfix"></div>#}
-{#                    </li>#}
-{#                    <li class="list-group-item">#}
-{#                        <div class="col-xs-12 col-sm-3">#}
-{#                            <img src="http://api.randomuser.me/portraits/women/90.jpg" alt="Jean Myers"#}
-{#                                 class="img-responsive img-circle"/>#}
-{#                        </div>#}
-{#                        <div class="col-xs-12 col-sm-9">#}
-{#                            <span class="name">Jean Myers</span><br/>#}
-{#                                        <span class="glyphicon glyphicon-map-marker text-muted c-info"#}
-{#                                              data-toggle="tooltip"#}
-{#                                              title="4949 W Dallas St"></span>#}
-{#                                    <span class="visible-xs"> <span#}
-{#                                            class="text-muted">4949 W Dallas St</span><br/></span>#}
-{#                                        <span class="glyphicon glyphicon-earphone text-muted c-info"#}
-{#                                              data-toggle="tooltip"#}
-{#                                              title="(477) 792-2822"></span>#}
-{#                            <span class="visible-xs"> <span class="text-muted">(477) 792-2822</span><br/></span>#}
-{#                                        <span class="glyphicon glyphicon-envelope text-muted c-info"#}
-{#                                              data-toggle="tooltip"#}
-{#                                              title="jean.myers@example.com"></span>#}
-{#                                    <span class="visible-xs"> <span#}
-{#                                            class="text-muted">jean.myers@example.com</span><br/></span>#}
-{#                        </div>#}
-{#                        <div class="clearfix"></div>#}
-{#                    </li>#}
-{#                    <li class="list-group-item">#}
-{#                        <div class="col-xs-12 col-sm-3">#}
-{#                            <img src="http://api.randomuser.me/portraits/women/34.jpg" alt="Rosemary Porter"#}
-{#                                 class="img-responsive img-circle"/>#}
-{#                        </div>#}
-{#                        <div class="col-xs-12 col-sm-9">#}
-{#                            <span class="name">Rosemary Porter</span><br/>#}
-{#                                        <span class="glyphicon glyphicon-map-marker text-muted c-info"#}
-{#                                              data-toggle="tooltip"#}
-{#                                              title="5267 Cackson St"></span>#}
-{#                                    <span class="visible-xs"> <span#}
-{#                                            class="text-muted">5267 Cackson St</span><br/></span>#}
-{#                                        <span class="glyphicon glyphicon-earphone text-muted c-info"#}
-{#                                              data-toggle="tooltip"#}
-{#                                              title="(497) 160-9776"></span>#}
-{#                            <span class="visible-xs"> <span class="text-muted">(497) 160-9776</span><br/></span>#}
-{#                                        <span class="glyphicon glyphicon-envelope text-muted c-info"#}
-{#                                              data-toggle="tooltip"#}
-{#                                              title="rosemary.porter@example.com"></span>#}
-{#                                        <span class="visible-xs"> <span#}
-{#                                                class="text-muted">rosemary.porter@example.com</span><br/></span>#}
-{#                        </div>#}
-{#                        <div class="clearfix"></div>#}
-{#                    </li>#}
-{#                    <li class="list-group-item">#}
-{#                        <div class="col-xs-12 col-sm-3">#}
-{#                            <img src="http://api.randomuser.me/portraits/women/56.jpg" alt="Debbie Schmidt"#}
-{#                                 class="img-responsive img-circle"/>#}
-{#                        </div>#}
-{#                        <div class="col-xs-12 col-sm-9">#}
-{#                            <span class="name">Debbie Schmidt</span><br/>#}
-{#                                        <span class="glyphicon glyphicon-map-marker text-muted c-info"#}
-{#                                              data-toggle="tooltip"#}
-{#                                              title="3903 W Alexander Rd"></span>#}
-{#                                    <span class="visible-xs"> <span#}
-{#                                            class="text-muted">3903 W Alexander Rd</span><br/></span>#}
-{#                                        <span class="glyphicon glyphicon-earphone text-muted c-info"#}
-{#                                              data-toggle="tooltip"#}
-{#                                              title="(867) 322-1852"></span>#}
-{#                            <span class="visible-xs"> <span class="text-muted">(867) 322-1852</span><br/></span>#}
-{#                                        <span class="glyphicon glyphicon-envelope text-muted c-info"#}
-{#                                              data-toggle="tooltip"#}
-{#                                              title="debbie.schmidt@example.com"></span>#}
-{#                                        <span class="visible-xs"> <span#}
-{#                                                class="text-muted">debbie.schmidt@example.com</span><br/></span>#}
-{#                        </div>#}
-{#                        <div class="clearfix"></div>#}
-{#                    </li>#}
-{#                    <li class="list-group-item">#}
-{#                        <div class="col-xs-12 col-sm-3">#}
-{#                            <img src="http://api.randomuser.me/portraits/women/76.jpg" alt="Glenda Patterson"#}
-{#                                 class="img-responsive img-circle"/>#}
-{#                        </div>#}
-{#                        <div class="col-xs-12 col-sm-9">#}
-{#                            <span class="name">Debbie Schmidt</span><br/>#}
-{#                                        <span class="glyphicon glyphicon-map-marker text-muted c-info"#}
-{#                                              data-toggle="tooltip"#}
-{#                                              title="5020 Poplar Dr"></span>#}
-{#                            <span class="visible-xs"> <span class="text-muted">5020 Poplar Dr</span><br/></span>#}
-{#                                        <span class="glyphicon glyphicon-earphone text-muted c-info"#}
-{#                                              data-toggle="tooltip"#}
-{#                                              title="(538) 718-7548"></span>#}
-{#                            <span class="visible-xs"> <span class="text-muted">(538) 718-7548</span><br/></span>#}
-{#                                        <span class="glyphicon glyphicon-envelope text-muted c-info"#}
-{#                                              data-toggle="tooltip"#}
-{#                                              title="glenda.patterson@example.com"></span>#}
-{#                                    <span class="visible-xs"> <span#}
-{#                                            class="text-muted">glenda.patterson@example.com</span><br/></span>#}
-{#                        </div>#}
-{#                        <div class="clearfix"></div>#}
-{#                    </li>#}
+                    {#                    <li class="list-group-item">#}
+                    {#                        <div class="col-xs-12 col-sm-3">#}
+                    {#                            <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Scott Stevens"#}
+                    {#                                 class="img-responsive img-circle"/>#}
+                    {#                        </div>#}
+                    {##}
+                    {#                        <div class="col-xs-12 col-sm-9">#}
+                    {#                            <span class="name">Yourself</span><br/>#}
+                    {#                                    <span class="glyphicon glyphicon-map-marker text-muted c-info" data-toggle="tooltip"#}
+                    {#                                          title="5842 Hillcrest Rd"></span>#}
+                    {#                                    <span class="visible-xs"> <span#}
+                    {#                                            class="text-muted">5842 Hillcrest Rd</span><br/></span>#}
+                    {#                                    <span class="glyphicon glyphicon-earphone text-muted c-info" data-toggle="tooltip"#}
+                    {#                                          title="(870) 288-4149"></span>#}
+                    {#                            <span class="visible-xs"> <span class="text-muted">(870) 288-4149</span><br/></span>#}
+                    {#                                    <span class="glyphicon glyphicon-envelope text-muted c-info" data-toggle="tooltip"#}
+                    {#                                          title="scott.stevens@example.com"></span>#}
+                    {#                                    <span class="visible-xs"> <span#}
+                    {#                                            class="text-muted">scott.stevens@example.com</span><br/></span>#}
+                    {#                        </div>#}
+                    {#                        <div class="clearfix"></div>#}
+                    {#                    </li>#}
+                    {#                    <li class="list-group-item">#}
+                    {#                        <div class="col-xs-12 col-sm-3">#}
+                    {#                            <img src="http://api.randomuser.me/portraits/men/97.jpg" alt="Seth Frazier"#}
+                    {#                                 class="img-responsive img-circle"/>#}
+                    {#                        </div>#}
+                    {#                        <div class="col-xs-12 col-sm-9">#}
+                    {#                            <span class="name">Seth Frazier</span><br/>#}
+                    {#                                        <span class="glyphicon glyphicon-map-marker text-muted c-info"#}
+                    {#                                              data-toggle="tooltip"#}
+                    {#                                              title="7396 E North St"></span>#}
+                    {#                                    <span class="visible-xs"> <span#}
+                    {#                                            class="text-muted">7396 E North St</span><br/></span>#}
+                    {#                                        <span class="glyphicon glyphicon-earphone text-muted c-info"#}
+                    {#                                              data-toggle="tooltip"#}
+                    {#                                              title="(560) 180-4143"></span>#}
+                    {#                            <span class="visible-xs"> <span class="text-muted">(560) 180-4143</span><br/></span>#}
+                    {#                                        <span class="glyphicon glyphicon-envelope text-muted c-info"#}
+                    {#                                              data-toggle="tooltip"#}
+                    {#                                              title="seth.frazier@example.com"></span>#}
+                    {#                                        <span class="visible-xs"> <span#}
+                    {#                                                class="text-muted">seth.frazier@example.com</span><br/></span>#}
+                    {#                        </div>#}
+                    {#                        <div class="clearfix"></div>#}
+                    {#                    </li>#}
+                    {#                    <li class="list-group-item">#}
+                    {#                        <div class="col-xs-12 col-sm-3">#}
+                    {#                            <img src="http://api.randomuser.me/portraits/women/90.jpg" alt="Jean Myers"#}
+                    {#                                 class="img-responsive img-circle"/>#}
+                    {#                        </div>#}
+                    {#                        <div class="col-xs-12 col-sm-9">#}
+                    {#                            <span class="name">Jean Myers</span><br/>#}
+                    {#                                        <span class="glyphicon glyphicon-map-marker text-muted c-info"#}
+                    {#                                              data-toggle="tooltip"#}
+                    {#                                              title="4949 W Dallas St"></span>#}
+                    {#                                    <span class="visible-xs"> <span#}
+                    {#                                            class="text-muted">4949 W Dallas St</span><br/></span>#}
+                    {#                                        <span class="glyphicon glyphicon-earphone text-muted c-info"#}
+                    {#                                              data-toggle="tooltip"#}
+                    {#                                              title="(477) 792-2822"></span>#}
+                    {#                            <span class="visible-xs"> <span class="text-muted">(477) 792-2822</span><br/></span>#}
+                    {#                                        <span class="glyphicon glyphicon-envelope text-muted c-info"#}
+                    {#                                              data-toggle="tooltip"#}
+                    {#                                              title="jean.myers@example.com"></span>#}
+                    {#                                    <span class="visible-xs"> <span#}
+                    {#                                            class="text-muted">jean.myers@example.com</span><br/></span>#}
+                    {#                        </div>#}
+                    {#                        <div class="clearfix"></div>#}
+                    {#                    </li>#}
+                    {#                    <li class="list-group-item">#}
+                    {#                        <div class="col-xs-12 col-sm-3">#}
+                    {#                            <img src="http://api.randomuser.me/portraits/women/34.jpg" alt="Rosemary Porter"#}
+                    {#                                 class="img-responsive img-circle"/>#}
+                    {#                        </div>#}
+                    {#                        <div class="col-xs-12 col-sm-9">#}
+                    {#                            <span class="name">Rosemary Porter</span><br/>#}
+                    {#                                        <span class="glyphicon glyphicon-map-marker text-muted c-info"#}
+                    {#                                              data-toggle="tooltip"#}
+                    {#                                              title="5267 Cackson St"></span>#}
+                    {#                                    <span class="visible-xs"> <span#}
+                    {#                                            class="text-muted">5267 Cackson St</span><br/></span>#}
+                    {#                                        <span class="glyphicon glyphicon-earphone text-muted c-info"#}
+                    {#                                              data-toggle="tooltip"#}
+                    {#                                              title="(497) 160-9776"></span>#}
+                    {#                            <span class="visible-xs"> <span class="text-muted">(497) 160-9776</span><br/></span>#}
+                    {#                                        <span class="glyphicon glyphicon-envelope text-muted c-info"#}
+                    {#                                              data-toggle="tooltip"#}
+                    {#                                              title="rosemary.porter@example.com"></span>#}
+                    {#                                        <span class="visible-xs"> <span#}
+                    {#                                                class="text-muted">rosemary.porter@example.com</span><br/></span>#}
+                    {#                        </div>#}
+                    {#                        <div class="clearfix"></div>#}
+                    {#                    </li>#}
+                    {#                    <li class="list-group-item">#}
+                    {#                        <div class="col-xs-12 col-sm-3">#}
+                    {#                            <img src="http://api.randomuser.me/portraits/women/56.jpg" alt="Debbie Schmidt"#}
+                    {#                                 class="img-responsive img-circle"/>#}
+                    {#                        </div>#}
+                    {#                        <div class="col-xs-12 col-sm-9">#}
+                    {#                            <span class="name">Debbie Schmidt</span><br/>#}
+                    {#                                        <span class="glyphicon glyphicon-map-marker text-muted c-info"#}
+                    {#                                              data-toggle="tooltip"#}
+                    {#                                              title="3903 W Alexander Rd"></span>#}
+                    {#                                    <span class="visible-xs"> <span#}
+                    {#                                            class="text-muted">3903 W Alexander Rd</span><br/></span>#}
+                    {#                                        <span class="glyphicon glyphicon-earphone text-muted c-info"#}
+                    {#                                              data-toggle="tooltip"#}
+                    {#                                              title="(867) 322-1852"></span>#}
+                    {#                            <span class="visible-xs"> <span class="text-muted">(867) 322-1852</span><br/></span>#}
+                    {#                                        <span class="glyphicon glyphicon-envelope text-muted c-info"#}
+                    {#                                              data-toggle="tooltip"#}
+                    {#                                              title="debbie.schmidt@example.com"></span>#}
+                    {#                                        <span class="visible-xs"> <span#}
+                    {#                                                class="text-muted">debbie.schmidt@example.com</span><br/></span>#}
+                    {#                        </div>#}
+                    {#                        <div class="clearfix"></div>#}
+                    {#                    </li>#}
+                    {#                    <li class="list-group-item">#}
+                    {#                        <div class="col-xs-12 col-sm-3">#}
+                    {#                            <img src="http://api.randomuser.me/portraits/women/76.jpg" alt="Glenda Patterson"#}
+                    {#                                 class="img-responsive img-circle"/>#}
+                    {#                        </div>#}
+                    {#                        <div class="col-xs-12 col-sm-9">#}
+                    {#                            <span class="name">Debbie Schmidt</span><br/>#}
+                    {#                                        <span class="glyphicon glyphicon-map-marker text-muted c-info"#}
+                    {#                                              data-toggle="tooltip"#}
+                    {#                                              title="5020 Poplar Dr"></span>#}
+                    {#                            <span class="visible-xs"> <span class="text-muted">5020 Poplar Dr</span><br/></span>#}
+                    {#                                        <span class="glyphicon glyphicon-earphone text-muted c-info"#}
+                    {#                                              data-toggle="tooltip"#}
+                    {#                                              title="(538) 718-7548"></span>#}
+                    {#                            <span class="visible-xs"> <span class="text-muted">(538) 718-7548</span><br/></span>#}
+                    {#                                        <span class="glyphicon glyphicon-envelope text-muted c-info"#}
+                    {#                                              data-toggle="tooltip"#}
+                    {#                                              title="glenda.patterson@example.com"></span>#}
+                    {#                                    <span class="visible-xs"> <span#}
+                    {#                                            class="text-muted">glenda.patterson@example.com</span><br/></span>#}
+                    {#                        </div>#}
+                    {#                        <div class="clearfix"></div>#}
+                    {#                    </li>#}
                 </ul>
             </div>
 
             <div class="contact_template">
                 <li class="list-group-item">
                     <div class="col-xs-12 col-sm-3">
-                        <img src="/static/image/default_avatar.gif" alt="Glenda Patterson"
+                        <img src="/static/image/default_avatar.gif" alt="default"
                              class="img-responsive img-circle"/>
                     </div>
                     <div class="col-xs-12 col-sm-9">
@@ -247,8 +249,8 @@
                             <button id="add_contact" type="button" class="btn btn-primary">add</button>
                         </div>
                         <div class="modal-footer">
-{#                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>#}
-{#                            <button type="button" class="btn btn-primary">保存</button>#}
+                            {#                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>#}
+                            {#                            <button type="button" class="btn btn-primary">保存</button>#}
                             <span id="contact_msg"></span>
                         </div>
                     </div>
