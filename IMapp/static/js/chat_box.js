@@ -4,6 +4,7 @@
 
 (function () {
 
+    var Archive = {};
     var Message;
     Message = function (arg) {
         this.text = arg.text, this.message_side = arg.message_side;
@@ -35,6 +36,7 @@
                 text: text,
                 message_side: message_side
             });
+            //Archive[$('.chat_window .title')].append(message);
             message.draw();
             return $messages.animate({scrollTop: $messages.prop('scrollHeight')}, 300);
         }
@@ -46,7 +48,7 @@
             }
             $('.message_input').val('');    //清空消息框
 
-            $.post("/pushMessage/", {"message": text}, function (data) {
+            $.post("/push_message/", {"message": text}, function (data) {
                 if (data['push'] == "False") {
                     showMessage("消息未发送", 'right');
                 }
@@ -58,7 +60,7 @@
 
 
         receiveMessage = function () {
-            $.post("/pullMessage/", {}, function (data) {
+            $.post("/pull_message/", {}, function (data) {
                 if (data['pull'] == "True") {
                     showMessage(data['message'], 'left');
                 }

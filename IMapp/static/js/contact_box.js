@@ -5,9 +5,7 @@
 $(function () {
 
 
-    var Contact;
-    var addContact;
-    Contact = function (arg) {
+    var Contact = function (arg) {
         this.name = arg.name, this.info = arg.info;
         this.draw = function (_this) {
             return function () {
@@ -15,7 +13,7 @@ $(function () {
                 $contact = $($('.contact_template').clone().html());
 
                 $contact.find('.name').html(this.name);
-                $('.contacts').append($contact);
+                $('.' + this.info.group + ' .contacts').append($contact);
                 //return setTimeout(function () {
                 //    return $message.addClass('appeared');
                 //}, 0);
@@ -24,9 +22,27 @@ $(function () {
         return this;
     };
 
-    addContact = function (name, info) {
+    var Group = function (group_name) {
+        this.name = group_name;
+        this.draw = function (_this) {
+            return function () {
+                var $group;
+                $group = $($('.group_template').clone().html());
+                $group.find('.group_name').html(this.name).attr("href", "#" + this.name);
+                $group.find('.collapse').attr("id", this.name);
+                $group.addClass(this.name);
+                $('.groups').append($group);
+            };
+        }(this);
+        return this;
+    };
+
+
+    var addContact = function (name, info) {
         var $contacts, contact;
         $contacts = $('.contacts');
+
+        $contacts = $('.' + info.group + ' .contacts');
         contact = new Contact({
             name: name,
             info: info
@@ -35,27 +51,49 @@ $(function () {
         return $contacts.animate({scrollTop: $contacts.prop('scrollHeight')}, 300);
     }
 
+    var addGroup = function (group_name) {
+        var $groups, group;
+        $groups = $('.groups');
+        group = new Group(group_name);
+        group.draw();
+        return $groups.animate({scrollTop: $groups.prop('scrollHeight')}, 300);
+    }
+
     var update_chat_box = function (data) {
-
-        $('.chat_window').hide();
-        $('.messages').html("");
-        $('.top_menu .title').text(data['chat_with']);
-        $('.chat_window').show(500);
-
+        $.post("/get_chat_with/", {}, function (data) {
+            if (data['chat_with'] == "")
+                $('.chat_window').hide();
+            else {
+                $('.chat_window').hide();
+                $('.messages').html("");
+                $('.top_menu .title').text(data['chat_with']);
+                $('.chat_window').show(500);
+            }
+        });
     };
 
     var refresh_contact_list = function () {
         $('.contacts').html("");
+        $('.groups').html("");
 
-        $.post("/getContactList/", function (data) {
+        $.post("/get_group_list/", function (data) {
+            for (group in data)
+                addGroup(group);
+        })
+
+        $.post("/get_contact_list/", function (data) {
             for (contact in data)
                 addContact(contact, data[contact]);
         })
     }
 
 
-
     $('[data-toggle="tooltip"]').tooltip();
+
+    $('.contact-panel').on("click",'.c-info', function () {
+        //$(this).tooltip();
+    });
+
 
     $('a[href="#cant-do-all-the-work-for-you"]').on('click', function (event) {
         event.preventDefault();
@@ -85,12 +123,15 @@ $(function () {
         }
     })
 
-    $('#add_contact').click(function () {
-        $.post("/addContact/", {contact: $('#contact_name').val()}, function (data) {
+    $('#addContactBtn').click(function () {
+        $.post("/add_contact/", {
+            contact: $('#inputContactName').val(),
+            group: $('#inputContactGroup').val()
+        }, function (data) {
             $('#contact_msg').html(data["msg"])
         })
 
-        setTimeout(refresh_contact_list, 100);
+        setTimeout(refresh_contact_list(), 200);
     })
 
     $(document).ready(function () {
@@ -100,10 +141,48 @@ $(function () {
     $('.refresh_contact_list').click(refresh_contact_list);
 
 
-    $('.contacts').on("click", ".name", function () {
+    $('.groups').on("click", ".name", function () {
         $.post("/chat_with_contact/", {contact: $(this).text()}, function (data) {
-            update_chat_box(data);
+            if (data['response'] == "True")
+                update_chat_box();
+            else
+                refresh_contact_list();
         });
     })
+
+    $('.groups').on("click", ".delete", function () {
+        $.post("/delete_contact/", {contact: $(this).parent().children('.name').text()}, function (data) {
+            alert(data["msg"]);
+            update_chat_box();
+            setTimeout(refresh_contact_list(), 200);
+        });
+    })
+
+
+    context.init({preventDoubleContext: false});
+    context.settings({compress: true});
+
+    context.attach('.group-heading', [
+		{header: 'Compressed Menu'},
+		{text: 'Back', href: '#'},
+		{text: 'Reload', href: '#'},
+		{divider: true},
+		{text: 'Save As', href: '#'},
+		{text: 'Print', href: '#'},
+		{text: 'View Page Source', href: '#'},
+		{text: 'View Page Info', href: '#'},
+		{divider: true},
+		{text: 'Inspect Element', href: '#'},
+		{divider: true},
+		{text: 'Disable This Menu', action: function(e){
+			e.preventDefault();
+			context.destroy('html');
+			alert('html contextual menu destroyed!');
+		}},
+		{text: 'Donate?', action: function(e){
+			e.preventDefault();
+			$('#donate').submit();
+		}}
+	]);
 
 });

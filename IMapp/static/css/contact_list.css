@@ -27,7 +27,8 @@ body {
     left: 50%;
     top: 50%;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    /*overflow: hidden;*/
+    overflow: scroll;
+    height: 545px;
 }
 
 .c-search > .form-control {
@@ -65,6 +66,15 @@ body {
     font-weight: bold;
     padding: 5px 15px;
     margin-top: 2px;
+    color: #2b7e9b;
+}
+
+.panel-title {
+    display: inline-block;
+    /*font-size: 1.7em;*/
+    font-weight: bold;
+    /*padding: 5px 15px;*/
+    /*margin-top: 2px;*/
     color: #2b7e9b;
 }
 
@@ -112,11 +122,20 @@ ul.c-controls li a:hover {
 
 .contacts {
     position: relative;
-    height: 500px;
+    max-height: 500px;
     overflow: scroll;
     border-radius: 5px;
+
 }
 
 .contact_template {
     display: none;
+}
+
+.group_template {
+    display: none;
+}
+
+.delete {
+    cursor: pointer;
 }

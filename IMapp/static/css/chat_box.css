@@ -21,7 +21,7 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
             background-color: #f8f8f8;
             overflow: hidden;
-            margin-top: 1px;
+            /*margin-top: 1px;*/
         }
 
         .top_menu {

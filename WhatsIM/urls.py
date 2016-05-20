@@ -26,13 +26,14 @@ urlpatterns = [
     url(r'^logout/', views.logout),
     url(r'^check_username/', views.check_username),
     url(r'^check_passwd/', views.check_passwd),
-    url(r'^contact_list/', views.contact_box),
-    url(r'^chat_box/', views.chat_box),
 
-    url(r'^pushMessage/', views.push_message),
-    url(r'^pullMessage/', views.pull_message),
-    url(r'^addContact/', views.add_contact),
-    url(r'^getContactList/', views.get_contact_list),
+    url(r'^push_message/', views.push_message),
+    url(r'^pull_message/', views.pull_message),
+
+    url(r'^add_contact/', views.add_contact),
+    url(r'^delete_contact/', views.delete_contact),
+    url(r'^get_contact_list/', views.get_contact_list),
+    url(r'^get_group_list/', views.get_group_list),
 
     url(r'^chat_with_contact/', views.chat_with_contact),
     url(r'^get_chat_with/', views.get_chat_with),

@@ -24,10 +24,18 @@ class UserProfile(models.Model):
         return self.user
 
 
+class Group(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    group = models.CharField(max_length=20)
+
+    def __unicode__(self):
+        return self.group
+
+
 class Contact(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     contact = models.CharField(max_length=20)
-    # contact = models.ForeignKey(User, on_delete=models.CASCADE)
+    group = models.CharField(max_length=20, default="DefaultGroup")
 
     def __unicode__(self):
         return self.contact
@@ -42,4 +50,3 @@ class Message(models.Model):
 
     def __unicode__(self):
         return self.message
-
