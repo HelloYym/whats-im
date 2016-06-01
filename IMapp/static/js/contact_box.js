@@ -77,7 +77,7 @@ $(function () {
         $('.groups').html("");
 
         $.post("/get_group_list/", function (data) {
-            
+
             for (group in data)
                 addGroup(group);
         })

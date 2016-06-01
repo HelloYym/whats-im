@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb6f2955-d70c-4d8f-bf5a-ec6cce8cf853" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IMapp/static/js/contact_box.js" afterPath="$PROJECT_DIR$/IMapp/static/js/contact_box.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WhatsIM/settings.py" afterPath="$PROJECT_DIR$/WhatsIM/settings.py" />
     </list>
     <ignored path="WhatsIM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -79,14 +81,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="contact_box.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="contact_box.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IMapp/static/js/contact_box.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.6646248">
-              <caret line="79" column="12" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
               <folding>
                 <element signature="e#0#44#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WhatsIM/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.31087288">
+              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -118,16 +130,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="348" column="30" selection-start-line="348" selection-start-column="30" selection-end-line="348" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jquery.searchable-1.0.0.min.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IMapp/static/js/jquery.searchable-1.0.0.min.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -181,7 +183,6 @@
         <option value="$PROJECT_DIR$/IMapp/static/js/chat_box.js" />
         <option value="$PROJECT_DIR$/IMapp/static/css/chat_box.css" />
         <option value="$PROJECT_DIR$/IMapp/models.py" />
-        <option value="$PROJECT_DIR$/WhatsIM/settings.py" />
         <option value="$PROJECT_DIR$/WhatsIM/urls.py" />
         <option value="$PROJECT_DIR$/IMapp/static/css/contact_list.css" />
         <option value="$PROJECT_DIR$/IMapp/views.py" />
@@ -190,6 +191,7 @@
         <option value="$PROJECT_DIR$/IMapp/static/js/jquery.easyui.min.js" />
         <option value="$PROJECT_DIR$/IMapp/templates/home.html" />
         <option value="$PROJECT_DIR$/IMapp/static/js/contact_box.js" />
+        <option value="$PROJECT_DIR$/WhatsIM/settings.py" />
       </list>
     </option>
   </component>
@@ -976,14 +978,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WhatsIM/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="121" column="1" selection-start-line="121" selection-start-column="1" selection-end-line="121" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WhatsIM/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1083,11 +1077,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/IMapp/static/js/contact_box.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.6646248">
-          <caret line="79" column="12" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
           <folding>
             <element signature="e#0#44#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WhatsIM/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31087288">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
