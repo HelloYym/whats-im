@@ -7,13 +7,13 @@ var ServerAddr = '127.0.0.1:8000'
 
 $(document).ready(function () {
 
-    $.ajaxSetup({
-            async: false,
-            data: {
-                csrfmiddlewaretoken: '{{ csrf_token }}'
-            },
-        }
-    )
+    //$.ajaxSetup({
+    //        async: false,
+    //        data: {
+    //            csrfmiddlewaretoken: '{{ csrf_token }}'
+    //        },
+    //    }
+    //)
 
     //注册和登陆页切换动画
     $('.message a').click(function () {
