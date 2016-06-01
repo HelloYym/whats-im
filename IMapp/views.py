@@ -12,6 +12,7 @@ from IMapp.models import Contact, Group, UserProfile, Message
 chat_with = {}
 
 
+
 def index(request):
     return render(request, "index.html")
 
@@ -57,11 +58,14 @@ def register(request):
 
 
 def check_username(request):
+
     username = request.POST.get('username', None)
     user = User.objects.filter(username=request.POST['username'])
     if user.count():
+        print "pass"
         return JsonResponse({'pass': 'true'})
     else:
+        print "not pass"
         return JsonResponse({'pass': 'false'})
 
 

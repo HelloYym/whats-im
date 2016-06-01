@@ -3,6 +3,7 @@
  */
 
 
+var ServerAddr = '127.0.0.1:8000'
 
 $(document).ready(function () {
 
@@ -25,7 +26,10 @@ $(document).ready(function () {
     //用户名检查
     $('#username_login').blur(function () {
 
-        $.post("/check_username/", $("#form_login").serialize(), function (data) {
+        $.post("/check_username/", {
+            username: $('#username_login').val(),
+            password: $('#password_login').val()
+        }, function (data) {
             if (data["pass"] == "false") {
                 $("#username_login").attr({
                     "value": "",
