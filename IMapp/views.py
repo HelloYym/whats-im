@@ -12,7 +12,6 @@ from IMapp.models import Contact, Group, UserProfile, Message
 chat_with = {}
 
 
-
 def index(request):
     return render(request, "index.html")
 
@@ -41,6 +40,19 @@ def login(request):
         return HttpResponseRedirect("/index/")
 
 
+def check_login(request):
+    username = request.POST.get('username', None)
+    password = request.POST.get('password', None)
+
+    user = auth.authenticate(username=username, password=password)
+
+    if user is not None:
+        auth.login(request, user)
+        return JsonResponse({'pass': 'true'})
+    else:
+        return JsonResponse({'pass': 'false'})
+
+
 def register(request):
     username = request.POST.get('username', None)
     password = request.POST.get('password', None)
@@ -57,8 +69,23 @@ def register(request):
         return HttpResponseRedirect("/")
 
 
-def check_username(request):
+def check_register(request):
+    username = request.POST.get('username', None)
+    password = request.POST.get('password', None)
+    email = request.POST.get('email', None)
+    user = User.objects.filter(username=request.POST['username'])
 
+    if user.count():
+        return JsonResponse({'pass': 'false'})
+    else:
+        user = User.objects.create_user(username=username, password=password, email=email)
+        user.save()
+        user = auth.authenticate(username=username, password=password)
+        auth.login(request, user)
+        return JsonResponse({'pass': 'true'})
+
+
+def check_username(request):
     username = request.POST.get('username', None)
     user = User.objects.filter(username=request.POST['username'])
     if user.count():

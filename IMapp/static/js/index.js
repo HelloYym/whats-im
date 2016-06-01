@@ -31,6 +31,7 @@ $(document).ready(function () {
             password: $('#password_login').val()
         }, function (data) {
             if (data["pass"] == "false") {
+                $('#username_login').val('');
                 $("#username_login").attr({
                     "value": "",
                     "placeholder": "用户名不存在"
@@ -46,6 +47,7 @@ $(document).ready(function () {
         var check = true;
         $.post("/check_passwd/", $("#form_login").serialize(), function (data, status) {
             if (data["pass"] == "false") {
+                $('#password_login').val('');
                 $("#password_login").attr({
                     "value": "",
                     "placeholder": "密码错误"
@@ -64,6 +66,7 @@ $(document).ready(function () {
         var user = $(this).val();
 
         if (user == "") {
+            $(this).val('');
             $(this).attr({
                 "value": "",
                 "placeholder": "用户名不能为空"
@@ -81,6 +84,7 @@ $(document).ready(function () {
 
         $.post("/check_username/", $("#form_register").serialize(), function (data) {
             if (data["pass"] == "true") {
+                $('#username_register').val('');
                 $("#username_register").attr({
                     "value": "",
                     "placeholder": "该用户名已存在"
