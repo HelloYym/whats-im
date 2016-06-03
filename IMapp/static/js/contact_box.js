@@ -160,6 +160,15 @@ $(function () {
     })
 
 
+    $('#logout_btn').click(function () {
+        $.post("/logout/", {}, function(data) {
+            if (data['logout'] == "true")
+                window.location.href="/index/";
+            else
+                refresh_contact_list();
+        });
+    })
+
     context.init({preventDoubleContext: false});
     context.settings({compress: true});
 

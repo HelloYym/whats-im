@@ -23,11 +23,10 @@ urlpatterns = [
     url(r'^index/', views.index),
 
     url(r'^login/', views.login),
-    url(r'^check_login/', views.check_login),
     url(r'^register/', views.register),
-    url(r'^check_register/', views.check_register),
-
     url(r'^logout/', views.logout),
+
+
     url(r'^check_username/', views.check_username),
     url(r'^check_passwd/', views.check_passwd),
 

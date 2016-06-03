@@ -28,10 +28,10 @@
                     <a href="#">Home</a>
                 </li>
                 <li>
-                    <a href="logout">Logout</a>
+                    <a href="" id="logout_btn">Logout</a>
                 </li>
                 <li>
-                    <a href="logout">{{ user.username }}</a>
+                    <a href="">{{ user.username }}</a>
                 </li>
             </ul>
         </div>
@@ -42,7 +42,8 @@
         <div class="col-md-4 column">
 
 
-            <div class="panel panel-default contact-panel">
+{#            <div class="panel panel-default contact-panel">#}
+            <div class="contact-panel">
                 <div class="panel-heading c-list">
                     <span class="title">Contacts</span>
                     <ul class="pull-right c-controls">
@@ -264,7 +265,7 @@
             </div>
 
             <div class="group_template">
-                <div class="panel panel-default" name="">
+                <div class="panel panel-default group-panel" name="">
                     <div class="panel-heading group-heading">
                         <a class="panel-title group_name" data-toggle="collapse"
                            href="">Group 2</a>
