@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+    <title>Whats IM</title>
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/contact_list.css" rel="stylesheet" />
+    <link href="css/chat_box.css" rel="stylesheet" />
+    <link href="css/context.standalone.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <!-- 导航栏 -->
+                <nav class="navbar navbar-default navbar-inverse navbar-fixed-bottom" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Whats IM</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="active">
+                                <li><a href="#cant-do-all-the-work-for-you">Add Contacts</a></li>
+                            </li>
+                            <li>
+                                <a href="#" class="refresh_contact_list">Refresh</a>
+                            </li>
+                            <li>
+                                <a href="#" class="logout_btn">Logout</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">Action</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Another action</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Something else here</a>
+                                    </li>
+                                    <li class="divider">
+                                    </li>
+                                    <li>
+                                        <a href="#">Separated link</a>
+                                    </li>
+                                    <li class="divider">
+                                    </li>
+                                    <li>
+                                        <a href="#">One more separated link</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" />
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </div>
+                </nav>
+                <!-- 标签页内容 -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="panel-839045">
+                        <!-- 联系人面板 -->
+                        <div class="contact-panel">
+                            <div class="panel-heading c-list">
+                                <span class="title">Contacts</span>
+                            </div>
+                            <!-- style="display: none;" -->
+                            <div class="row clearfix search-box">
+                                <div class="col-md-12 column">
+                                    <!-- <div class="input-group c-search">
+                                        <input type="text" class="form-control" id="contact-list-search">
+                                        <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><span
+                                        class="glyphicon glyphicon-search text-muted"></span></button>
+                                        </span>
+                                    </div> -->
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for...">
+                                        <span class="input-group-btn">
+                                     <button class="btn btn-default" type="button">Go!</button>
+                                </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /input-group -->
+                            <div class="row clearfix" id="groups-panel">
+                                <div class="col-md-12 column">
+                                    <div class="panel-group groups" id="panel-9875">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="panel-412441">
+                        <div class="chat_window">
+                            <div class="top_menu">
+                                <div class="buttons">
+                                    <div class="button close"></div>
+                                    <!-- <div class="button minimize"></div>
+                                    <div class="button maximize"></div> -->
+                                </div>
+                                <div class="title">Hello</div>
+                            </div>
+                            <ul class="messages">
+                                <li class="message left appeared">
+                                    <div class="avatar"></div>
+                                    <div class="text_wrapper">
+                                        <div class="text">Hello Philip! :)</div>
+                                    </div>
+                                </li>
+                                <li class="message right appeared">
+                                    <div class="avatar"></div>
+                                    <div class="text_wrapper">
+                                        <div class="text">Hi Sandy! How are you?</div>
+                                    </div>
+                                </li>
+                                <li class="message left appeared">
+                                    <div class="avatar"></div>
+                                    <div class="text_wrapper">
+                                        <div class="text">I'm fine, thank you!</div>
+                                    </div>
+                                </li>
+                                <li class="message right appeared">
+                                    <div class="avatar"></div>
+                                    <div class="text_wrapper">
+                                        <div class="text">你好</div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="bottom_wrapper clearfix">
+                                <div class="message_input_wrapper">
+                                    <input class="message_input" placeholder="Type your message here...">
+                                </div>
+                                <div class="send_message">
+                                    <div class="icon"></div>
+                                    <div class="text">Send</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 标签页按钮 -->
+                <div class="tabbable" id="tabs-82643" style="display: none;">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#panel-839045" data-toggle="tab" id="contact_btn">Contacts</a>
+                        </li>
+                        <li>
+                            <a href="#panel-412441" data-toggle="tab" id="chat_btn">Chats</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact_template">
+        <li class="list-group-item">
+            <div class="row clearfix contact">
+                <img src="img/default_avatar.jpg" alt="default" class="img-responsive img-rounded avatar" />
+                <span class="name">abc</span>
+                <span class="glyphicon glyphicon-trash text-muted c-info delete" data-toggle="tooltip"></span>
+        </li>
+        </div>
+        <div class="group_template">
+            <div class="group" name="">
+                <div class="panel-heading group-heading">
+                    <a class="panel-title group_name" data-toggle="collapse" href="">Group name</a>
+                </div>
+                <div id="" class="panel-collapse collapse group-content">
+                    <ul class="list-group contacts" id="contact-list"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="message_template">
+            <li class="message">
+                <div class="avatar"></div>
+                <div class="text_wrapper">
+                    <div class="text"></div>
+                </div>
+            </li>
+        </div>
+        <div id="cant-do-all-the-work-for-you" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="mySmallModalLabel">Add Contact</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="InputContactUsername">Contact</label>
+                            <input type="username" class="form-control" id="inputContactName" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Group">Group</label>
+                            <input type="group" class="form-control" id="inputContactGroup" />
+                        </div>
+                        <button id="add_contact" type="button" class="btn btn-primary">add</button>
+                        <button type="submit" class="btn btn-default" id="addContactBtn">Submit</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary">保存</button>
+                        <span id="contact_msg"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- JavaScript 放置在文档最后面可以使页面加载速度更快 -->
+        <!-- 可选: 包含 jQuery 库 -->
+        <script src="js/jquery-2.2.4.min.js"></script>
+        <!-- 可选: 合并了 Bootstrap JavaScript 插件 -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- JavaScrip Search Plugin -->
+        <script src="js/jquery.searchable-1.0.0.min.js"></script>
+        <script src="js/csrf.js"></script>
+        <script src="js/chat_box.js"></script>
+        <script src="js/contact_box.js"></script>
+        <script type="text/javascript">
+        app.initialize();
+        </script>
+</body>
+
+</html>

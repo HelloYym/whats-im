@@ -40,8 +40,6 @@ $(function () {
 
     var addContact = function (name, info) {
         var $contacts, contact;
-        $contacts = $('.contacts');
-
         $contacts = $('.' + info.group + ' .contacts');
         contact = new Contact({
             name: name,
@@ -132,7 +130,7 @@ $(function () {
             $('#contact_msg').html(data["msg"])
         })
 
-        setTimeout(refresh_contact_list(), 200);
+        setTimeout(refresh_contact_list(), 500);
     })
 
     $(document).ready(function () {

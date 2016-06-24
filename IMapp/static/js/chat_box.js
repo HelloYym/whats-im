@@ -79,8 +79,7 @@
 
         // 定时请求服务器，更新新消息
         setInterval(function () {
-                receiveMessage();
-            },
-            1000);
+            receiveMessage();
+        }, 1000);
     });
 }.call(this));
